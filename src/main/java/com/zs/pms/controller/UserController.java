@@ -50,9 +50,9 @@ public class UserController {
 	public String add(TUser user,HttpSession session,ModelMap map) {
 		TUser cu=(TUser) session.getAttribute("CUSER");
 		try {
-			user.setIsenabled(1);
-			user.setCreator(cu.getId());
-			user.setPic("");
+			//装载数据
+			user.setIsenabled(1);//可用
+			user.setCreator(cu.getId());//新增人j
 			us.insertUser(user);
 //		跳转url
 			return "redirect:list.do";

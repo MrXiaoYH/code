@@ -73,6 +73,33 @@
 			}
 		)
 		
+		//文件上传
+		$("#file").change(
+		function() {
+			
+			//文件上传
+			//提交数据json
+			var data={			
+					//url 绝对url
+					url:$("#apath").val()+"/upload/common.do",
+					//返回类型
+					dataType:"text",
+					//提交方式
+					type:"post",
+					//成功回调
+					success:function(data){
+						//动态将src赋给img
+						$("#pic").attr("src","../upload/"+data);
+						//赋值
+						$("#picurl").val(data);
+					}
+			}
+			//表单局部提交
+			$("#jvForm").ajaxSubmit(data);
+			
+		});
+		
+		
 	});
 	
 		
@@ -80,7 +107,8 @@
 </script>
 </head>
 <body>
-${pageContext.request.contextPath}<!--获得应用的绝对路径-->
+<!--获得应用的绝对路径-->
+<input type="hidden" id="apath" value="${pageContext.request.contextPath}"/>
 <img src="${pageContext.request.contextPath}/images/logo4.png" /><br />  <!--绝对路径-->
 <img src="../images/logo4.png" /><!--相对路径 ../ 表示上一级-->
 <div class="box-positon">
@@ -91,7 +119,7 @@ ${pageContext.request.contextPath}<!--获得应用的绝对路径-->
 	<div class="clear"></div>
 </div>
 <div class="body-box" style="float:right">
-	<form name="fm" id="jvForm" action="add.do" method="post" >
+	<form name="fm" id="jvForm" action="add.do" method="post" enctype="multipart/form-data">
 		<table cellspacing="1" cellpadding="2" width="100%" border="0" class="pn-ftable">
 			<tbody>
 				<tr>
@@ -141,6 +169,17 @@ ${pageContext.request.contextPath}<!--获得应用的绝对路径-->
 					<td width="20%" class="pn-flabel pn-flabel-h">
 						出生日期:</td><td width="80%" class="pn-fcontent">
 						<input type="text"  name="birthday" maxlength="80"   class="Wdate" onclick="WdatePicker()" readonly="readonly"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%" class="pn-flabel pn-flabel-h">
+						头像:</td><td width="80%" class="pn-fcontent">
+						<input id="file" type="file" name="file"/>
+						<!-- 用于图片回显 -->
+						<img id="pic" width="80px" height="80px" />
+						<!-- 用于存储 -->
+						<input  type="hidden" id="picurl" name="pic"/>
 					</td>
 				</tr>
 				

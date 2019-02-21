@@ -77,6 +77,7 @@
 					<th>性别</th>
 					<th>部门</th>
 					<th>出生日期</th>
+					<th>头像</th>
 					<th>是否可用</th>
 					<th>操作选项</th>
 				</tr>
@@ -92,6 +93,7 @@
 						<td align="center">${user.sex}</td>
 						<td align="center">${user.dept.name}</td>
 						<td align="center">${user.birthdayTxt}</td>
+						<td align="center"><img src="../upload/${user.pic}" height="50px" width="50px"></td>
 						<td align="center">${user.isenabledTxt}</td>
 						<td align="center"><a class="pn-opt"
 							href="get.do?id=${user.id} ">修改</a> | <a class="pn-opt"
